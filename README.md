@@ -1,4 +1,4 @@
-# A simple performance comparision for SQLAlchemy + asyncpg
+# A simple performance comparison for SQLAlchemy + asyncpg
 
 Creates a simple table, executes a series of simple queries and measures execution times.
 
@@ -38,3 +38,12 @@ The meaning:
     -- exactly same syntax as SQLAlchemy creates) executed 100000 times took 19397.920068ms -> 0.194ms per query
   - prepared once and executed many times query took 18982.737795ms -> 0.189ms per query
   such a little difference is caused by `asyncpg` query caching using prepare/execute
+
+## Conclusion
+I was expecting very little performance difference, like 10-20% and this little
+test was intended to show the exact number. But this result left me dumbfounded --
+I didn't expect to see 2.5 times difference on the most common use cases of the
+simplest query.
+
+Probably I'll add more complex queries to the test later, but I beleive,
+performance degradation will be exponential.
